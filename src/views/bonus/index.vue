@@ -33,7 +33,7 @@
                         </td>
                         <td class="px-6 py-4">
                             <router-link :to='`/view/bonus/${bonus.id}`' class="font-medium text-blue-600 dark:text-blue-500 hover:underline px-3">view detail</router-link>
-                            <a href="#" v-if="isAdmin" class="font-medium text-blue-600 dark:text-blue-500 hover:underline px-3">modify</a>
+                            <router-link :to='`/edit/bonus/${bonus.id}`' v-if="isAdmin" class="font-medium text-blue-600 dark:text-blue-500 hover:underline px-3">modify</router-link>
                             <button v-if="isAdmin" @click="deleteData(bonus.id)" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">delete</button>
                         </td>
                     </tr>
@@ -46,6 +46,7 @@
 
 <script>
 import api from '../../api'
+import Swal from 'sweetalert2'
 import Auth from '../layouts/auth.vue'
 export default {
     data() {
@@ -69,11 +70,22 @@ export default {
     },
     methods : {
         deleteData(id) {
-            api.delete('/delete/'+id).then((response) => {
-                if(response.data.message === 'success') {
-                    this.bonuses = this.bonuses.filter(bonus => bonus.id !== id)
-                }
-            })
+            Swal.fire({
+                    title: "Yakin ingin dihapus?",
+                    showDenyButton: true,
+                    confirmButtonText: "Ya",
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire("Berhasil dihapus!", "", "success");
+                        api.delete(`/delete/${id}`).then((response) => {
+                            if(response.data.message === 'success') {
+                                this.bonuses = this.bonuses.filter(bonus => bonus.id !== id)
+                            }
+                        })
+                    } else if (result.isDenied) {
+                        Swal.fire("Tidak jadi dihapus", "", "info");
+                    }
+                });
         }
     }
 }

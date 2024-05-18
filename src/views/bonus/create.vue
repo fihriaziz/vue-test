@@ -122,6 +122,7 @@ export default {
             text: 'Data berhasil disimpan',
             icon: 'success'
           });
+          this.$router.push('/bonus')
         }
       })
     }

@@ -23,16 +23,16 @@
                 <tbody>
                     <tr class="odd:bg-white odd:dark:bg-slate-800 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                         <td class="px-6 py-4">
-                            Rp. {{bonus.pembayaran}}
+                            Rp. {{formatRupiah(bonus.pembayaran)}}
                         </td>
                         <td class="px-6 py-4">
-                            Rp. {{(bonus.presentasiA * bonus.pembayaran) / 100}}
+                            Rp. {{formatRupiah((bonus.presentasiA * bonus.pembayaran) / 100)}}
                         </td>
                         <td class="px-6 py-4">
-                            Rp. {{(bonus.presentasiB * bonus.pembayaran) / 100}}
+                            Rp. {{formatRupiah((bonus.presentasiB * bonus.pembayaran) / 100)}}
                         </td>
                         <td class="px-6 py-4">
-                            Rp. {{(bonus.presentasiC * bonus.pembayaran) / 100}}
+                            Rp. {{formatRupiah((bonus.presentasiC * bonus.pembayaran) / 100)}}
                         </td>
                     </tr>
                 </tbody>
@@ -58,6 +58,14 @@ export default {
         api.get('/getBy/'+this.$route.params.id).then((response) => {
             this.bonus = response.data.data 
         })
+    },
+    methods: {
+        formatRupiah(number) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+            }).format(number)
+        }
     }
 }
 </script>

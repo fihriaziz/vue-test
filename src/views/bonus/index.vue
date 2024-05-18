@@ -23,13 +23,13 @@
                 <tbody v-for="bonus in bonuses" :key="bonus.id">
                     <tr class="odd:bg-white odd:dark:bg-slate-800 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                         <td class="px-6 py-4">
-                            Rp. {{(bonus.presentasiA * bonus.pembayaran) / 100}}
+                            Rp. {{formatRupiah((bonus.presentasiA * bonus.pembayaran) / 100)}}
                         </td>
                         <td class="px-6 py-4">
-                            Rp. {{(bonus.presentasiB * bonus.pembayaran) / 100}}
+                            Rp. {{formatRupiah((bonus.presentasiB * bonus.pembayaran) / 100)}}
                         </td>
                         <td class="px-6 py-4">
-                            Rp. {{(bonus.presentasiC * bonus.pembayaran) / 100}}
+                            Rp. {{formatRupiah((bonus.presentasiC * bonus.pembayaran) / 100)}}
                         </td>
                         <td class="px-6 py-4">
                             <router-link :to='`/view/bonus/${bonus.id}`' class="font-medium text-blue-600 dark:text-blue-500 hover:underline px-3">view detail</router-link>
@@ -86,6 +86,12 @@ export default {
                         Swal.fire("Tidak jadi dihapus", "", "info");
                     }
                 });
+        },
+        formatRupiah(number) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+            }).format(number)
         }
     }
 }

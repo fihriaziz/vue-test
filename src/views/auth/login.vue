@@ -37,7 +37,7 @@ export default {
                 const user = response.data.data
                 localStorage.setItem('token', response.data.token)
                 localStorage.setItem('role', user.role)
-                this.$router.push('/dashboard')
+                this.$router.push('/')
             }).catch(error => {
                 this.errors = error.response.data.errors
             })

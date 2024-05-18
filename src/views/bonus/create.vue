@@ -40,7 +40,7 @@
                    <p>Buruh A</p>
                 </div>
                 <div class="w-1/2 shadow-2xl">
-                    <p>Rp. {{ (form.presentasiA * form.pembayaran) / 100 }}</p>
+                    <p>Rp. {{ formatRupiah((form.presentasiA * form.pembayaran) / 100) }}</p>
                 </div>
             </div>
             <div class="w-full flex p-2 bg-white">
@@ -48,7 +48,7 @@
                    <p>Buruh B</p>
                 </div>
                 <div class="w-1/2 shadow-2xl">
-                   <p>Rp. {{ (form.presentasiB * form.pembayaran) / 100 }}</p>
+                   <p>Rp. {{ formatRupiah((form.presentasiB * form.pembayaran) / 100) }}</p>
                 </div>
             </div>
             <div class="w-full flex p-2 bg-white">
@@ -56,7 +56,7 @@
                    <p>Buruh C</p>
                 </div>
                 <div class="w-1/2 shadow-2xl">
-                   <p>Rp. {{ (form.presentasiC * form.pembayaran) / 100 }}</p>
+                   <p>Rp. {{ formatRupiah((form.presentasiC * form.pembayaran) / 100) }}</p>
                 </div>
             </div>
         </div>
@@ -113,6 +113,12 @@ export default {
           })
         }
       }
+    },
+    formatRupiah(number) {
+        return new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+        }).format(number)
     },
     async submitBonus(){
       await api.post('/submit-bonus', this.form).then((response) => {

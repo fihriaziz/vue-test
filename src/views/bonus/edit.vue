@@ -40,7 +40,7 @@
                    <p>Buruh A</p>
                 </div>
                 <div class="w-1/2 shadow-2xl">
-                    <p>Rp. {{ (bonus.presentasiA * bonus.pembayaran) / 100 }}</p>
+                    <p>Rp. {{ formatRupiah((bonus.presentasiA * bonus.pembayaran) / 100) }}</p>
                 </div>
             </div>
             <div class="w-full flex p-2 bg-white">
@@ -48,7 +48,7 @@
                    <p>Buruh B</p>
                 </div>
                 <div class="w-1/2 shadow-2xl">
-                   <p>Rp. {{ (bonus.presentasiB * bonus.pembayaran) / 100 }}</p>
+                   <p>Rp. {{ formatRupiah((bonus.presentasiB * bonus.pembayaran) / 100) }}</p>
                 </div>
             </div>
             <div class="w-full flex p-2 bg-white">
@@ -56,7 +56,7 @@
                    <p>Buruh C</p>
                 </div>
                 <div class="w-1/2 shadow-2xl">
-                   <p>Rp. {{ (bonus.presentasiC * bonus.pembayaran) / 100 }}</p>
+                   <p>Rp. {{ formatRupiah((bonus.presentasiC * bonus.pembayaran) / 100) }}</p>
                 </div>
             </div>
         </div>
@@ -82,20 +82,20 @@ export default {
     },
     computed: {
         totalPresentasi() {
-        const {presentasiA, presentasiB, presentasiC } = this.bonus
-        return Number(presentasiA) + Number(presentasiB) + Number(presentasiC)
+            const {presentasiA, presentasiB, presentasiC } = this.bonus
+            return Number(presentasiA) + Number(presentasiB) + Number(presentasiC)
         },
         allFieldsFilled() {
-        const {presentasiA, presentasiB, presentasiC } = this.bonus
-        return presentasiA && presentasiB && presentasiC
+            const {presentasiA, presentasiB, presentasiC } = this.bonus
+            return presentasiA && presentasiB && presentasiC
         },
     },
   watch: {
         totalPresentasi(){
-        this.validatePresentasi()
+            this.validatePresentasi()
         },
         allFieldFilled() {
-        this.validatePresentasi();
+            this.validatePresentasi();
         }
     },
   methods: {
@@ -120,6 +120,12 @@ export default {
           });
         this.$router.push('/bonus')
       })
+    },
+    formatRupiah(number) {
+        return new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+        }).format(number)
     }
   }
 }

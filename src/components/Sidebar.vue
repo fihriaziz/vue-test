@@ -13,12 +13,12 @@
             </button>
             <ul id="dropdown-news" class="py-2 space-y-2">
                   <li class="ml-4">
-                     <router-link :to="{name: 'Bonus'}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                     <router-link :to="{name: 'Bonus'}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" active-class="bg-teal-500">
                         <span class="flex-1 ms-3 whitespace-nowrap">List</span>
                      </router-link>
                   </li>
                   <li class="ml-4">
-                     <router-link :to="{name: 'CreateBonus'}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                     <router-link :to="{name: 'CreateBonus'}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" active-class="bg-teal-500">
                         <span class="flex-1 ms-3 whitespace-nowrap">Create</span>
                      </router-link>
                   </li>

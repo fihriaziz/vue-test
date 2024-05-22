@@ -7,12 +7,13 @@
                     <div class="flex flex-col pt-4">
                         <label for="email" class="text-lg">Email</label>
                         <input type="email" v-model="form.email" id="email" :class="{ 'border-red-600 rounded': errors.email }" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
-                        <small v-if="errors.email" class="text-red-600 text-sm">{{ errors.email }}</small>
+                        <small v-if="errors.email" class="text-red-600 text-sm">{{ errors.email[0] }}</small>
                     </div>
     
                     <div class="flex flex-col pt-4">
                         <label for="password" class="text-lg">Password</label>
                         <input type="password" v-model="form.password" id="password" :class="{ 'border-red-600 rounded': errors.password }" class="shadow appearance-none border rounded w-full py-2 px-3 mt-1 leading-tight focus:outline-none focus:shadow-outline">
+                        <small v-if="errors.password" class="text-red-600 text-sm">{{ errors.password[0] }}</small>
                     </div>
                     <input type="submit" value="Log In" class="bg-black text-white font-bold text-lg hover:bg-gray-700 hover:cursor-pointer p-2 mt-8">
                 </form>

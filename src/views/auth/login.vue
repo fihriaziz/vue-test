@@ -44,6 +44,12 @@ export default {
             })
             
         }
+    },
+    created() {
+        const auth = localStorage.getItem('token')
+        if(auth) {
+            this.$router.replace({name: 'Dashboard'})
+        }
     }
 }
 </script>

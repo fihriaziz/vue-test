@@ -3,7 +3,7 @@
     <Sidebar/>
     <div>
         <Navbar @toggle="showNav"/>
-        <div class="bg-gray-900 min-h-screen">
+        <div class="bg-white dark:bg-gray-900 min-h-screen">
             <slot/>
         </div>
     </div>

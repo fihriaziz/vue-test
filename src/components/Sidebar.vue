@@ -8,10 +8,10 @@
             </router-link>
          </li>
          <li>
-            <button type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+            <button @click="toggleList" type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
                   <span class="ml-2 whitespace-nowrap">Bonus</span>
             </button>
-            <ul id="dropdown-news" class="py-2 space-y-2">
+            <ul id="dropdown-news" class="py-2 space-y-2" :class="{'hidden' : !isOpen}">
                   <li class="ml-4">
                      <router-link :to="{name: 'Bonus'}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" active-class="bg-teal-500">
                         <span class="flex-1 ms-3 whitespace-nowrap">List</span>
@@ -28,6 +28,32 @@
    </div>
 </aside>
 </template>
+
+<script>
+export default {
+   data() {
+      return {
+         isOpen: false
+      }
+   },
+   methods: {
+      toggleList() {
+         this.isOpen = !this.isOpen
+         const dropdownBonus = document.querySelector('#dropdown-news')
+         dropdownBonus.classList.toggle('hidden')
+      },
+      checkSidebarInclude() {
+         if(this.$route.path.includes('bonus')) {
+            this.isOpen = true
+         }
+      }
+   },
+   mounted() {
+      this.checkSidebarInclude()
+   }
+}
+</script>
+
 
 <style>
    
